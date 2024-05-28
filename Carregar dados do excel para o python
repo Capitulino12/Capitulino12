@@ -1,0 +1,30 @@
+#Não está abrindo no meu terminal(ontem estava pegando tranquilo)
+
+import pandas as pd
+
+Plan1 = 'empresa.xlsx'
+# Leitura da tabela
+tabela = pd.read_excel(Plan1)
+# Exibir toda a planilha
+print("Planilha:")
+print(tabela)
+
+# Ler a planilha "empresa.xlsx"
+df = pd.read_excel("empresa.xlsx")
+
+while True:
+    # Solicitar ao usuário o número de DRT a ser pesquisado
+    print('_'*65)
+    drt_pesquisa = input("Digite número de DRT do funcionário (ou 'sair' para encerrar): ")
+
+    if drt_pesquisa.lower() == 's':
+        print("Encerrando o programa...")
+        break
+    # Filtrar o dataframe pelas linhas onde a coluna "DRT" é igual à DRT pesquisada
+    informacoes_funcionario = df.loc[df['DRT'] == int(drt_pesquisa)]
+
+    if not informacoes_funcionario.empty:
+        print("\nInformações encontradas para o funcionário com DRT", drt_pesquisa)
+        print(informacoes_funcionario)
+    else:
+        print("\nFuncionário não encontrado.Por favor digite um número de DRT cadastrado: \n")
